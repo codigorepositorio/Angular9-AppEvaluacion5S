@@ -1,0 +1,380 @@
+<p-panel header="MEDICIÓN 5S "
+[toggleable]="true" [style]="{'margin-bottom':'20px'}">
+    <p-menubar [model]="items2">
+
+    <p>Puntaje: {{sumaPuntos}}</p>
+    <input type="text" pInputText placeholder={{sumaPuntos}} ></p-menubar>
+    <br/>    
+    <b class="first">Periodos</b>     
+    <div class="ui-W" style="width:400px;margin-bottom:0px">    
+        
+    </div>
+
+    <b class="first">Areas</b>     
+    <div class="ui-W" style="width:400px;margin-bottom:10px">    
+        <p-dropdown [options]="areas"
+         placeholder="Selecione Areas"
+          optionLabel="nombre" [showClear]="true">
+        </p-dropdown>
+    </div>                
+
+        <b>Fases:</b>
+        <p-steps [model]="items" [(activeIndex)]="activeIndex" [readonly]="false">
+        </p-steps> 
+        <p-panel header="* CUESTIONARIO DE PREGUNTAS DE EVALUACIÓN" [toggleable]="true" [style]="{'margin-bottom':'5px'}">
+            <!-- Fase 1 -->
+     
+            <ng-container *ngIf="FaseUno">
+             <div *ngIf="activeIndex==0" class="preg-1">
+             <p-table 
+             [value]="FaseUno"
+             [resizableColumns]="true" 
+             [responsive]="false" 
+             [paginator]="true"
+             selectionMode="single"
+             
+             dataKey=idPregunta
+            [rows]="10"
+            [resizableColumns]="true" 
+            columnResizeMode="expand"
+            autoLayout="true"
+            id="tablaPregunta">
+            
+                 <ng-template pTemplate="header">
+                     <tr>
+                         <th>Preguntas</th>
+                         <th>Cumple</th>
+                         <th>Puntaje</th>
+                                          
+                     </tr>
+                 </ng-template>
+                 <ng-template pTemplate="body" let-item let-rowData>
+                     <tr [pSelectableRow]="rowData">
+                         <td class="ui-resizable-column">{{item.preguntaMedicion}}</td>
+                         <td class="ui-resizable-column">
+                       </td>
+                         <td class="ui-resizable-column">{{item.puntaje}}</td>
+                          
+                        
+                        <td class="ui-resizable-column">                            
+                                <p-checkbox name="isActivo" value="val1" label="0" 
+                                binary="true"></p-checkbox>                            
+                        </td>                  
+                         <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                             <td class="ui-resizable-column">
+                                 Activo                        
+                              </td>
+                         </div> -->
+                         <!-- <div *ngIf="item.isPreguntaActivo==='Inactivo'">
+                             <td class="ui-resizable-column" Style="color:red">
+                                 Inactivo </td>
+                         </div>                               -->
+                         <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                             <td class="ui-resizable-column">
+                                 <i class="fas fa-trash-alt">
+                                 </i>                            
+                             </td>
+                             
+                         </div>                                 -->
+                 </ng-template>            
+             </p-table>
+             </div>
+         </ng-container>
+     
+         <!-- Fase 2 -->
+         <ng-container *ngIf="FaseDos">
+            <div *ngIf="activeIndex==1" class="preg-1">
+            <p-table 
+            [value]="FaseDos"
+            [resizableColumns]="true" 
+            [responsive]="false" 
+            [paginator]="true"
+            selectionMode="single"
+            
+            dataKey=idPregunta
+           [rows]="10"
+           [resizableColumns]="true" 
+           columnResizeMode="expand"
+           autoLayout="true"
+           id="tablaPregunta">
+           
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Preguntas</th>
+                        <th>Cumple</th>
+                        <th>Puntaje</th>
+                                         
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td class="ui-resizable-column">{{item.preguntaMedicion}}</td>
+                        <td class="ui-resizable-column"><p-inputSwitch inputId={{item.idPregunta}} [ngModel]="">
+                        </p-inputSwitch><b style="position: relative;"> y/n</b>
+                        </td>
+                        <td class="ui-resizable-column">{{item.puntaje}}</td>                    
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                Activo                        
+                             </td>
+                        </div> -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Inactivo'">
+                            <td class="ui-resizable-column" Style="color:red">
+                                Inactivo </td>
+                        </div>                               -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                <i class="fas fa-trash-alt">
+                                </i>                            
+                            </td>
+                            
+                        </div>                                 -->
+                </ng-template>            
+            </p-table>
+            </div>
+        </ng-container>
+  
+         <!-- Fase 3 -->
+         <ng-container *ngIf="FaseTres">
+            <div *ngIf="activeIndex==2" class="preg-1">
+            <p-table 
+            [value]="FaseTres"
+            [resizableColumns]="true" 
+            [responsive]="false" 
+            [paginator]="true"
+            selectionMode="single"
+            
+            dataKey=idPregunta
+           [rows]="10"
+           [resizableColumns]="true" 
+           columnResizeMode="expand"
+           autoLayout="true"
+           id="tablaPregunta">
+           
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Preguntas</th>
+                        <th>Cumple</th>
+                        <th>Puntaje</th>
+                                         
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td class="ui-resizable-column">{{item.preguntaMedicion}}</td>
+                        <td class="ui-resizable-column"><p-inputSwitch inputId={{item.idPregunta}} [ngModel]="">
+                        </p-inputSwitch><b style="position: relative;"> y/n</b>
+                        </td>
+                        <td class="ui-resizable-column">{{item.puntaje}}</td>                    
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                Activo                        
+                             </td>
+                        </div> -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Inactivo'">
+                            <td class="ui-resizable-column" Style="color:red">
+                                Inactivo </td>
+                        </div>                               -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                <i class="fas fa-trash-alt">
+                                </i>                            
+                            </td>
+                            
+                        </div>                                 -->
+                </ng-template>            
+            </p-table>
+            </div>
+        </ng-container>
+        
+     
+           <!-- Fase 4 -->
+           <ng-container *ngIf="FaseCuatro">
+            <div *ngIf="activeIndex==3" class="preg-1">
+            <p-table 
+            [value]="FaseCuatro"
+            [resizableColumns]="true" 
+            [responsive]="false" 
+            [paginator]="true"
+            selectionMode="single"
+            
+            dataKey=idPregunta
+           [rows]="10"
+           [resizableColumns]="true" 
+           columnResizeMode="expand"
+           autoLayout="true"
+           id="tablaPregunta">
+           
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Preguntas</th>
+                        <th>Cumple</th>
+                        <th>Puntaje</th>
+                                         
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td class="ui-resizable-column">{{item.preguntaMedicion}}</td>
+                        <td class="ui-resizable-column"><p-inputSwitch inputId={{item.idPregunta}} [ngModel]="">
+                        </p-inputSwitch><b style="position: relative;"> y/n</b>
+                        </td>
+                        <td class="ui-resizable-column">{{item.puntaje}}</td>                    
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                Activo                        
+                             </td>
+                        </div> -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Inactivo'">
+                            <td class="ui-resizable-column" Style="color:red">
+                                Inactivo </td>
+                        </div>                               -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                <i class="fas fa-trash-alt">
+                                </i>                            
+                            </td>
+                            
+                        </div>                                 -->
+                </ng-template>            
+            </p-table>
+            </div>
+        </ng-container>
+       
+     
+         <!-- Fase 4 -->
+     
+         <ng-container *ngIf="FaseCinco">
+            <div *ngIf="activeIndex==4" class="preg-1">
+            <p-table 
+            [value]="FaseCinco"
+            [resizableColumns]="true" 
+            [responsive]="false" 
+            [paginator]="true"
+            selectionMode="single"
+            
+            dataKey=idPregunta
+           [rows]="10"
+           [resizableColumns]="true" 
+           columnResizeMode="expand"
+           autoLayout="true"
+           id="tablaPregunta">
+           
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Preguntas</th>
+                        <th>Cumple</th>
+                        <th>Puntaje</th>
+                                         
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-rowData>
+                    <tr [pSelectableRow]="rowData">
+                        <td class="ui-resizable-column">{{item.preguntaMedicion}}</td>
+                        <td class="ui-resizable-column"><p-inputSwitch inputId={{item.idPregunta}} [ngModel]="">
+                        </p-inputSwitch><b style="position: relative;"> y/n</b>
+                        </td>
+                        <td class="ui-resizable-column">{{item.puntaje}}</td>                    
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                Activo                        
+                             </td>
+                        </div> -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Inactivo'">
+                            <td class="ui-resizable-column" Style="color:red">
+                                Inactivo </td>
+                        </div>                               -->
+                        <!-- <div *ngIf="item.isPreguntaActivo==='Activo'">
+                            <td class="ui-resizable-column">
+                                <i class="fas fa-trash-alt">
+                                </i>                            
+                            </td>
+                            
+                        </div>                                 -->
+                </ng-template>            
+            </p-table>
+            </div>
+        </ng-container>
+         
+        </p-panel>
+</p-panel>
+<p-panel>
+
+<h3 class="first">Basic</h3>
+<div class="ui-g" style="width:250px;margin-bottom:10px">
+    <div class="ui-g-12"><p-checkbox name="group1" value="New York" label="New York" [(ngModel)]="selectedCities" inputId="ny"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group1" value="San Francisco" label="San Francisco" [(ngModel)]="selectedCities" inputId="sf"></p-checkbox></div>
+    <div class="ui-g-12"><p-checkbox name="group1" value="Los Angeles" label="Los Angeles" [(ngModel)]="selectedCities" inputId="la"></p-checkbox></div>
+</div>
+
+Selected Cities: <span *ngFor="let city of selectedCities" style="margin-right:10px">{{city}}</span>
+
+
+
+
+<h3 class="first">Addons</h3>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="pi pi-user" style="line-height: 1.25;"></i></span>
+            
+            <p-dropdown [options]="periodos" placeholder="Selecione periodos" optionLabel="name" [showClear]="true"></p-dropdown>               
+        </div>
+    </div>
+    
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">$</span>
+            <p-dropdown [options]="areas"
+         placeholder="Selecione Areas"
+          optionLabel="nombre" [showClear]="true">
+        </p-dropdown>
+            
+            <span class="ui-inputgroup-addon">.00</span>      
+        </div>
+    </div>
+            
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon">www</span>
+            <input type="text" pInputText placeholder="Website">
+               <p-dropdown [options]="areas"
+         placeholder="Selecione Areas"
+          optionLabel="nombre" [showClear]="true">
+        </p-dropdown>
+                  
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <h3 class="first">Basic - ({{checked1}})</h3>
+<p-toggleButton [(ngModel)]="checked1" [style]="{'width':'150px'}"></p-toggleButton> -->
+
+<div *ngIf="checked2">
+<p>5</p>
+</div>
+
+<div *ngIf="!checked2">
+    <p>0</p>
+    </div>
+<h3>Customized - ({{checked2}})</h3>
+
+<p-toggleButton [(ngModel)]="checked2" 
+
+    onLabel='Ok'
+
+    offLabel="No"
+
+    onIcon="pipi-check" 
+
+    offIcon="pi pi-times" 
+
+    [style]="{'width':'100px'}"
+ >
+
+</p-toggleButton>
+
+</p-panel>
+
